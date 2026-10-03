@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CostWarden — Spend intelligence</title>
+  <meta name="description" content="CostWarden analyzes existing business spending data to surface duplicate, overlapping and unnecessary costs worth reviewing.">
+  <meta name="theme-color" content="#08080f">
+  <link rel="icon" href="./assets/icons/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <svg width="0" height="0" aria-hidden="true" class="svg-defs">
+    <symbol id="cw-mark" viewBox="0 0 44 44">
+      <defs><linearGradient id="cwGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B6DFF"/><stop offset="1" stop-color="#2FD9C4"/></linearGradient></defs>
+      <rect x="1" y="1" width="42" height="42" rx="13" fill="url(#cwGradient)"/>
+      <circle cx="19.5" cy="19.5" r="8.5" fill="none" stroke="#fff" stroke-width="3"/>
+      <path d="M26 26l6 6" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M16 21l2.5-3 2.5 2 3-4" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="CostWarden home"><svg><use href="#cw-mark"></use></svg><span>CostWarden</span></a>
+      <div class="nav-links">
+        <a href="#how">How it works</a><a href="#findings">Findings</a><a href="#security">Security</a><a href="#faq">FAQ</a>
+      </div>
+      <a class="button button-primary button-small" href="#demo">Book a demo <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span></span> AI-powered spend analysis</div>
+        <h1>Find hidden <span class="gradient-text">savings</span> in the spend you already have.</h1>
+        <p>Upload the spend data you already have. CostWarden scans subscriptions, suppliers and recurring costs to surface areas worth reviewing — with the source behind every finding.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#demo">Book a demo <span>↗</span></a>
+          <button class="button button-ghost" id="replayHero" type="button">Replay analysis <span>↻</span></button>
+        </div>
+        <div class="micro-proof"><span>✓ No ERP replacement</span><span>✓ No long implementation</span><span>✓ Start with existing exports</span></div>
+      </div>
+
+      <div class="hero-product reveal" id="heroProduct">
+        <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+        <article class="product-window tilt-card" data-tilt>
+          <div class="product-topbar">
+            <div class="product-title"><svg><use href="#cw-mark"></use></svg><div><strong>Spend intelligence</strong><small>Illustrative analysis</small></div></div>
+            <div class="status-pill"><i></i><span id="analysisStatus">Analyzing</span></div>
+          </div>
+
+          <div class="scan-summary">
+            <div><span>Spend scanned</span><strong>€<b id="scanAmount">0</b></strong></div><b id="scanPercent">0%</b>
+          </div>
+          <div class="progress"><i id="scanProgress"></i></div>
+
+          <div class="source-list" id="sourceList">
+            <button class="source-row active scanning" data-key="software" type="button"><em>S</em><span><strong>Software subscriptions</strong><small>Recurring tools & licences</small></span><b><i></i><span>Scanning</span></b></button>
+            <button class="source-row" data-key="suppliers" type="button"><em>V</em><span><strong>Supplier invoices</strong><small>Vendor overlap & pricing</small></span><b><i></i><span>Queued</span></b></button>
+            <button class="source-row" data-key="telecom" type="button"><em>T</em><span><strong>Telecom & services</strong><small>Recurring commercial costs</small></span><b><i></i><span>Queued</span></b></button>
+          </div>
+
+          <div class="finding-card" id="findingCard">
+            <div class="finding-heading"><span>Potential opportunity</span><b id="signalBadge">High signal</b></div>
+            <h3 id="findingTitle">Overlapping software licences</h3>
+            <p id="findingText">Similar tools appear across teams while some licences show little recent activity.</p>
+            <div class="finding-metrics"><div><span>Items flagged</span><strong id="findingItems">12</strong></div><div><span>Spend under review</span><strong id="findingValue">€8,420</strong></div><div><span>Source</span><strong id="findingSource">Subscription export</strong></div></div>
+            <button class="text-button" id="inspectEvidence" type="button">Inspect evidence →</button>
+          </div>
+          <div class="product-foot"><span>Demo data only — not a client result.</span><span>◇ Source-linked findings</span></div>
+          <div class="evidence-popover" id="evidencePopover" hidden>
+            <div><span>Evidence trace</span><button id="closeEvidence" type="button" aria-label="Close">×</button></div>
+            <strong>Subscription export → Product family → Licence activity</strong>
+            <p>This demo shows how a finding can keep a visible path back to the data that triggered it.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="signal-strip" aria-label="Product capabilities">
+      <div class="signal-track"><span>INVOICE PATTERNS</span><i></i><span>SUBSCRIPTION OVERLAP</span><i></i><span>SUPPLIER CONSOLIDATION</span><i></i><span>RECURRING COST SHIFTS</span><i></i><span>SOURCE-LINKED EVIDENCE</span><i></i><span>INVOICE PATTERNS</span><i></i><span>SUBSCRIPTION OVERLAP</span></div>
+    </section>
+
+    <section class="story" id="how">
+      <div class="story-stage">
+        <div class="story-visual shell">
+          <div class="analysis-map" id="analysisMap">
+            <div class="map-grid"></div>
+            <div class="map-head"><span>LIVE ANALYSIS MAP</span><b><i></i> DEMO MODE</b></div>
+            <div class="flow-line flow-1"></div><div class="flow-line flow-2"></div><div class="flow-line flow-3"></div>
+            <button class="map-node node-a active" data-map="0" type="button"><span>01</span><strong>Exports</strong><small>CSV · ERP · invoices</small></button>
+            <button class="map-node node-b" data-map="1" type="button"><span>02</span><strong>Normalize</strong><small>Categories · vendors</small></button>
+            <button class="map-node node-c" data-map="2" type="button"><span>03</span><strong>Detect</strong><small>Patterns · overlaps</small></button>
+            <button class="map-node node-d" data-map="3" type="button"><span>04</span><strong>Explain</strong><small>Evidence · priority</small></button>
+            <div class="map-core"><svg><use href="#cw-mark"></use></svg><span>CostWarden</span><b id="mapCoreStatus">Receiving spend data</b></div>
+            <div class="map-result" id="mapResult"><span>INPUT</span><strong>Existing spend exports</strong><p>No system replacement. Start from files your finance team already has.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="story-copy shell">
+        <article class="story-step" data-step="0"><div><span>01 / INPUT</span><h2>Start with the data you already have.</h2><p>Bring invoices, supplier records or standard spend exports. CostWarden is designed to begin without a long integration project.</p></div></article>
+        <article class="story-step" data-step="1"><div><span>02 / STRUCTURE</span><h2>Turn messy transactions into comparable spend.</h2><p>Names, categories and recurring costs are organized into a consistent view so patterns can be compared instead of manually hunted.</p></div></article>
+        <article class="story-step" data-step="2"><div><span>03 / DETECTION</span><h2>Surface the places worth a human review.</h2><p>Overlaps, recurring shifts and supplier patterns become visible as review candidates — not unexplained AI verdicts.</p></div></article>
+        <article class="story-step" data-step="3"><div><span>04 / EVIDENCE</span><h2>Every finding should lead back to its source.</h2><p>The result is a prioritized place to look, plus the evidence trail needed to understand why it was flagged.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="findings">
+      <div class="shell">
+        <div class="section-head split"><span>WHAT IT CAN SURFACE</span><div><h2>Not another dashboard full of numbers. A shortlist of places to look.</h2><p>Choose a category to see an illustrative finding and the kind of evidence CostWarden can attach to it.</p></div></div>
+        <div class="findings-layout">
+          <div class="finding-selector" role="tablist" aria-label="Finding types">
+            <button class="active" data-finding="software" type="button"><span>01</span><div><strong>Software overlap</strong><small>Licences · duplicate tooling</small></div><i>↗</i></button>
+            <button data-finding="supplier" type="button"><span>02</span><div><strong>Supplier overlap</strong><small>Categories · consolidation</small></div><i>↗</i></button>
+            <button data-finding="recurring" type="button"><span>03</span><div><strong>Recurring cost shift</strong><small>Changes · unusual movement</small></div><i>↗</i></button>
+          </div>
+          <article class="finding-stage" id="findingStage">
+            <div class="stage-top"><span id="stageLabel">SOFTWARE / ILLUSTRATIVE FINDING</span><b><i></i> Source linked</b></div>
+            <h3 id="stageTitle">Similar tools. Separate teams. One review opportunity.</h3>
+            <p id="stageText">Recurring subscriptions with similar functions appear across teams, while activity suggests part of the licence base may be worth reviewing.</p>
+            <div class="evidence-list" id="stageEvidence">
+              <div><span>Pattern</span><strong>3 products in the same functional category</strong></div>
+              <div><span>Signal</span><strong>Low activity on a subset of licences</strong></div>
+              <div><span>Next step</span><strong>Validate owners, usage and renewal dates</strong></div>
+            </div>
+            <div class="stage-pipeline"><span>Export</span><i>→</i><span>Pattern</span><i>→</i><span>Evidence</span><i>→</i><b>Review</b></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="security">
+      <div class="shell security-layout">
+        <div class="security-copy"><span class="section-label">SECURITY BY DESIGN</span><h2>Your spending data stays your business.</h2><p>The product story should feel modern without asking a finance team to blindly trust a black box. Make data handling and human review visible.</p><a class="button button-dark" href="https://costwarden.co/security/">Read security details <span>↗</span></a></div>
+        <div class="security-grid">
+          <article><span>01</span><h3>Start from exports</h3><p>Analyze existing files before asking a team to change core systems.</p></article>
+          <article><span>02</span><h3>Evidence first</h3><p>Findings are presented with a path back to the source data used to surface them.</p></article>
+          <article><span>03</span><h3>Human review</h3><p>CostWarden highlights areas worth reviewing; final commercial decisions remain with your team.</p></article>
+          <article><span>04</span><h3>Clear scope</h3><p>Demo outputs are explicitly marked as illustrative rather than presented as client results.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="shell faq-layout">
+        <div class="faq-copy"><span class="section-label">FAQ</span><h2>Questions finance teams ask before they upload anything.</h2></div>
+        <div class="accordion">
+          <details open><summary>What data can CostWarden analyze?<span>+</span></summary><p>Business spending information such as invoices, supplier records and standard spend exports from accounting or ERP systems.</p></details>
+          <details><summary>Do we need to replace our ERP?<span>+</span></summary><p>No. The current proposition is built around understanding existing spending information rather than a rip-and-replace implementation.</p></details>
+          <details><summary>Does CostWarden automatically cut costs?<span>+</span></summary><p>No. It surfaces areas worth reviewing and helps make the evidence easier to inspect. Your team keeps control of the commercial decision.</p></details>
+          <details><summary>How quickly can we see something useful?<span>+</span></summary><p>That depends on the scope and quality of the data. A demo is the right place to establish a realistic timeline for your setup.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" id="demo">
+      <div class="shell demo-card">
+        <div class="demo-copy"><span class="section-label">BOOK A DEMO</span><h2>Bring the spend data you already have. See what becomes visible.</h2><p>Use the production form endpoint here when this concept is approved. This test build intentionally does not send data anywhere.</p></div>
+        <form class="demo-form" onsubmit="return false">
+          <label>Work email<input type="email" placeholder="you@company.com" autocomplete="email"></label>
+          <label>Company<input type="text" placeholder="Company name" autocomplete="organization"></label>
+          <button class="button button-primary" type="submit">Request demo <span>↗</span></button>
+          <small>Prototype form — no submission endpoint connected.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell"><a class="brand" href="#top"><svg><use href="#cw-mark"></use></svg><span>CostWarden</span></a><p>Spend intelligence for clearer cost decisions.</p><div><a href="https://costwarden.co/privacy-policy/">Privacy</a><a href="https://costwarden.co/terms/">Terms</a><a href="https://costwarden.co/security/">Security</a></div></div></footer>
+  <script src="./app.js"></script>
+</body>
+</html>
